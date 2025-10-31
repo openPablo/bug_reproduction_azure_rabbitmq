@@ -7,8 +7,8 @@ def send_metrics():
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
     channel = connection.channel()
     channel.queue_declare(queue='metrics')
-
-    for _ in range(5):
+    x = 200
+    for _ in range(x):
         metric_data = {
             'cpu_usage': random.randint(0, 100),
             'memory_usage': random.randint(0, 100),
@@ -16,8 +16,8 @@ def send_metrics():
         }
         message = json.dumps(metric_data)
         channel.basic_publish(exchange='', routing_key='metrics', body=message)
-        print(f"Sent: {message}")
 
+    print(f"Sent: {x} messages")
     connection.close()
 
 def read_metrics():
@@ -35,3 +35,4 @@ def read_metrics():
 
 if __name__ == "__main__":
     send_metrics()
+

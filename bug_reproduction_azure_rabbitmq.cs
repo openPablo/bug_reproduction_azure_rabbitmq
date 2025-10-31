@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
@@ -14,8 +16,15 @@ public class RabbitMQTriggerCSharp
     }
 
     [Function("bugreproducer")]
-    public void Run([RabbitMQTrigger("NameOfQueue", ConnectionStringSetting = "ConnectionValue")] string myQueueItem)
+    public void Run([RabbitMQTrigger("metrics", ConnectionStringSetting = "RabbitMQConnection")] string myQueueItem)
     {
-        _logger.LogInformation("C# Queue trigger function processed: {item}", myQueueItem);
+        var metrics = JsonSerializer.Deserialize<Dictionary<string, object>>(myQueueItem);
+        if (metrics != null)
+        {
+            foreach (var kvp in metrics)
+            {
+                _logger.LogInformation("Metric {key}: {value}", kvp.Key, kvp.Value);
+            }
+        }
     }
 }
