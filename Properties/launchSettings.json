@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "bug_reproduction_azure_rabbitmq": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7105",
+      "launchBrowser": false
+    }
+  }
+}
