@@ -1,4 +1,10 @@
 {
     "version": "2.0",
-    "telemetryMode": "OpenTelemetry"
+    "telemetryMode": "OpenTelemetry",
+    "logging": {
+      "logLevel": {
+        "default": "Warning",
+        "bug_reproduction_azure_rabbitmq.RabbitMQTriggerCSharp": "Information"
+      }
+  }
 }
