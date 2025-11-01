@@ -25,6 +25,5 @@ if __name__ == "__main__":
          except Exception as e:
             print(e)
             time.sleep(5)
-     for _ in range(0,2):
-         send_metrics(50000, channel)
+     send_metrics(200000, channel)
 
