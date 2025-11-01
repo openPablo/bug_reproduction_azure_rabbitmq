@@ -4,7 +4,7 @@ using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace Company.Function;
+namespace bug_reproduction_azure_rabbitmq;
 
 public class RabbitMQTriggerCSharp
 {
